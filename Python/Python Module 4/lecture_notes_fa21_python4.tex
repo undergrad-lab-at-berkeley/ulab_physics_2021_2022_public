@@ -1,0 +1,324 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{amsmath}
+\numberwithin{equation}{section}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{physics}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{hyperref}
+\hypersetup{colorlinks = true, urlcolor = blue, linkcolor = red, citecolor = red}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage[bottom]{footmisc}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+commentstyle=\color{gray},
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},                        % Any extra options here
+showstringspaces=false
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\color{lightgray} Python Lecture IV Notes}
+\fancyfoot[L]{\color{lightgray} \today}
+\fancyfoot[R]{Page \thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\begin{document}
+
+\section{Review}
+
+\textbf{Last time:}
+\begin{itemize}
+    \item Conditionals, loops, functions, errors
+    \item Questions?
+\end{itemize}
+
+\textbf{Today:} we will discuss a miscellany of topics. This will round off the basic intro to Python. After this lecture we'll be discussing very packages for scientific computing: numpy, scipy, matplotlib, pandas
+
+\section{List Comprehensions}
+\begin{itemize}
+    \item Shorthand for creating a NEW listed BASED on an existing list.
+    \item Iterate through list and perform an operation given an optional condition
+    \item Syntax is similar to a for loop
+    \verb|[EXPRESSION for x in ITERABLE if CONDITION]|
+    \item They sometimes make your life easier. Downside: code is harder to read
+\end{itemize}
+
+\begin{python}
+lst = [3, 1, 4, 1]
+for i in range(len(lst)):
+    lst[i] = lst[i]*2
+
+# with list comprehension
+double = [x*2 for x in lst]
+
+# keep only values greater than 
+new_lst = [x for x in lst if x>1]
+
+# create a list of prime numbers that are between 1 and 1000
+primes = [x for x in range(1, 1001) if is_prime(x)]
+\end{python}
+
+\section{2D Arrays}
+A list is an ordered collection of objects. A list is an object. You can have a list of lists. A list of lists is a two-dimensional list/array (list and array are often interchangeable...)
+
+\begin{python}
+sigma_x = [[0, 1], [1, 0]]
+
+sigma_x = [ [0, 1], 
+            [1, 0] ]
+\end{python}
+
+\begin{itemize}
+    \item What is \verb|sigma_x[0]|?
+    \item What is \verb|sigma_x[0][0]|?
+    \item Syntax: \verb|array[row][col]|
+    \item Can have higher dimensional arrays. But if you NEED to use a higher dimensional array to store data, you should probably define a class (object orientated programming) or find a better way to format your data.
+\end{itemize}
+
+\section{Tuples}
+\textbf{Lists:} an ordered collection that allows duplicates
+
+\textbf{Tuples:} an ordered collection with duplicates BUT is immutable (can not be changed after creation).
+\begin{itemize}
+    \item Tuples are denotes by parenthesis \verb|()|
+    \item Single tuple denoted by \verb|(element,)|. Comma indicates tuple.
+    \item Tuples are faster than lists (no dynamic memory allocation)
+    \begin{python}
+    tup = (3, 1, 4)
+    
+    >>> tup[0]
+    >>> 3
+    >>> tup[0] = 5
+    >>> Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    TypeError: 'tuple' object does not support item assignment
+    
+    tup = ('1-tuple',)
+    
+    >>> len(tup)
+    >>> 1
+    \end{python}
+\end{itemize}
+
+\section{Dictionaries}
+\textbf{Dictionary: }an unordered, mutable collection of key:value pairs. 
+\begin{itemize}
+    \item Keys must be unique and immutable (string, tuple, number)
+    \item Why is this data type called a dictionary?
+\end{itemize}
+\begin{python}
+dict = {
+    'name' = 'ulab',
+    'age' = 5
+}
+\end{python}
+\begin{python}
+# view dictionary contents
+print(dict)
+
+# method returns array of keys
+keys = dict.keys()
+
+# checking if a key exists
+contains = 'age' in dict
+
+# accessing key value
+age = dict['age']
+
+# if KEY does not already exists in the dictionary
+# a new key:value pair is created
+dict['email'] = 'physics.ulab@gmail.com'
+
+# if KEY already EXISTS in the dictionary
+# the key value is updated
+dict['email'] = 'physics@ulab.berkeley.edu'
+
+# pop removes the key:value pair and returns the value
+dict.pop('email')
+
+# looping through dictionaries
+for key in dict:
+    print(key)
+    
+>>> name
+>>> age
+\end{python}
+
+\section{Lambda Functions}
+
+\textbf{Setup: functions can have functions as arguments}
+\begin{python}
+def map(f, iter):
+    return [f(x) for x in iter]
+    
+def triple(x):
+    return e*x
+
+lst = [3, 1, 4]
+lst_new = map(triple, lst)
+
+>>> lst_new
+>>> [9, 3, 12]
+\end{python}
+
+\textbf{Lambda functions:}
+\begin{itemize}
+    \item Sometimes we want to define small ANONYMOUS functions
+    \item Anonymous: function does not have a name
+    \item Lambda functions are most often used when passing in a function as an argument
+    \item Lambda functions can take any number of arguments, but must return a single expression (no conditionals loops).
+    \item Syntax:
+    \begin{python}
+    lambda [args] : [expression]
+    \end{python}
+    \item Example:
+    \begin{python}
+    lst_new = map(lambda x: 3*x, lst)
+    
+    # you can assign a variable the value of a lambda function
+    triple = lambda x: 3*x
+    add = lambda x, y: x+y
+    
+    >>> add(1, 2)
+    >>> 3
+    \end{python}
+\end{itemize}
+
+\section{Importing}
+
+\textbf{Modules:} a Python file containing definitions for variables, functions, and classes (we wont' discuss object oriented programming):
+\begin{itemize}
+	\item A module IS a .py file. There is nothing special about a module.
+	\item A module contains code that you or someone else has written to serve a specific purpose.
+	\item We IMPORT modules when we want to use their functionality
+	\item Python has a ton of built-in modules: math, random, sys, etc...
+	\item It is convention to place import statement at the start of your code
+\end{itemize}
+
+\textbf{Our own module example:}
+\begin{python}
+# file: mathtools.py
+
+pi = 3.14
+e = 2.718
+
+# this function is recursive...but we could also use a for loop
+def fact(x):
+	if x==0:
+		return 1
+	return x*fact(x-1)
+
+# calculates e^x using Taylor series
+def exp(x):
+	val = 0
+	for n in range(30):
+		val += (x**n) / fact(n)
+	return val
+\end{python}
+
+Now, let's import!
+
+\begin{python}
+# basic import
+import mathtools
+>>> mathtools.pi
+>>> 3.14
+>>> mathtools.fact(3)
+>>> 6
+
+# import specific names
+from mathtools import fact
+>>> fact(3) = 6
+
+# import all names
+from mathtools import *
+>>> pi
+>>> 3.14
+>>> e
+>>> 2.718
+
+# import and rename
+from mathtools import fact as f
+>>> f(3) = 6
+
+# Python has a built-in math module with exp defined
+import math
+>>> math.exp(3.14), mathtools.exp(3.14)
+>>> (23.103866858722185, 23.103866858722185)
+	
+\end{python}
+
+\textbf{Packages: }a directory containing a collection of modules and sub-packages.
+\begin{verbatim}
+/package
+|   __init__.py
+|   module1.py
+|   module2.py
+|   /sub-package1
+    |   __init__.py
+    |   module3.py
+\end{verbatim}
+\begin{itemize}
+    \item A package must contain \verb|__init__.py| 
+    \item Importing packages work the same way as importing modules
+    \item Packages are used to share 
+    \item We will use the Numpy, Matplotlib, Pandas, and Scipy packages!
+\end{itemize}
+
+\textbf{pip}: a package installer for Python. pip installs packages located on the Python Package Index (PyPI) repository. On the command line: \verb|pip install PACKAGE_NAME|
+
+\section{Next Time}
+\begin{itemize}
+    \item Numpy!
+\end{itemize}
+
+\end{document}
