@@ -334,7 +334,7 @@ For example (both arrays have \verb|shape=(2,3)|),
     \end{pmatrix}
 \end{equation*}
 
-However, we can use BROADCASTING to perform operations on arrays of UNEQUAL shapes IF they are broadcastable. For example, multiplying a \verb|(2,3)| array by a \verb|(3,)| array:
+However, we can use BROADCASTING to perform operations on arrays of UNEQUAL shapes IF they are broadcastable. For example, adding a \verb|(3,2)| array to a \verb|(2,)| array:
 
 \begin{equation*}
     \begin{pmatrix}
@@ -362,15 +362,15 @@ However, we can use BROADCASTING to perform operations on arrays of UNEQUAL shap
 
 \textbf{Broadcasting steps} (using example above):
 \begin{enumerate}
-    \item Determine the dimensions of both arrays: \verb|(3,2)| and \verb|(2,)|
-    \item If the dimensions are not the same size, prepend the smaller dimension with 1's until both arrays have the same number of dimensions: \verb|(2,)| $\rightarrow$ \verb|(1,2)|
+    \item Determine the shape of both arrays: \verb|(3,2)| and \verb|(2,)|
+    \item If the shapes are not the same size, \textbf{prepend} the smaller shape with 1's until both arrays have the same number of dimensions. In this case, the first shape has dimension 2, so we must extend the second shape: \verb|(2,)| $\rightarrow$ \verb|(1,2)|
     \item Align the array dimensions:
     \begin{align*}
         &\text{(3, 2)}\\
         &\text{(1, 2)}
     \end{align*}
-    The respective dimensions must be (a) equal or (b) one of them is 1. Otherwise, the arrays can not be broadcast.
-    \item If the respective dimensions are equal, the operation is applied element wise. If one of the respective dimensions is 1, the dimension 1 is broadcast. 
+    The respective dimensions must be (a) equal or (b) one of them is 1. \textbf{Otherwise, the arrays can not be broadcast.} In this case, axis-0 (3 and 1) are not equal but contains one 1, and axis-1 (2 and 2) are equal.
+    \item If the respective dimensions are equal, the operation is applied element wise. If the respective dimensions are not equal, but one dimension is 1, then the dimension 1 is broadcast.
 \end{enumerate}
 
    This is fully generalized. However, broadcasting can get nasty with high dimensions. As always, if you're getting lost in the complexity of your data, you should probably reconsider it's format. 
