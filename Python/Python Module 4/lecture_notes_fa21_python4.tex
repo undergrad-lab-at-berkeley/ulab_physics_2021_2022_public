@@ -81,11 +81,11 @@ showstringspaces=false
     \item Questions?
 \end{itemize}
 
-\textbf{Today:} we will discuss a miscellany of topics. This will round off the basic intro to Python. After this lecture we'll be discussing very packages for scientific computing: numpy, scipy, matplotlib, pandas
+\textbf{Today:} we will discuss a miscellany of topics. This will round off the basic intro to Python. After this lecture we'll be discussing very important packages for scientific computing: numpy, scipy, matplotlib, pandas
 
 \section{List Comprehensions}
 \begin{itemize}
-    \item Shorthand for creating a NEW listed BASED on an existing list.
+    \item Shorthand for creating a NEW list BASED on an existing list.
     \item Iterate through list and perform an operation given an optional condition
     \item Syntax is similar to a for loop
     \verb|[EXPRESSION for x in ITERABLE if CONDITION]|
@@ -136,16 +136,16 @@ sigma_x = [ [0, 1],
     tup = (3, 1, 4)
     
     >>> tup[0]
-    >>> 3
+    3
     >>> tup[0] = 5
-    >>> Traceback (most recent call last):
+    Traceback (most recent call last):
     File "<stdin>", line 1, in <module>
     TypeError: 'tuple' object does not support item assignment
     
     tup = ('1-tuple',)
     
     >>> len(tup)
-    >>> 1
+    1
     \end{python}
 \end{itemize}
 
@@ -188,9 +188,7 @@ dict.pop('email')
 # looping through dictionaries
 for key in dict:
     print(key)
-    
->>> name
->>> age
+
 \end{python}
 
 \section{Lambda Functions}
@@ -207,7 +205,7 @@ lst = [3, 1, 4]
 lst_new = map(triple, lst)
 
 >>> lst_new
->>> [9, 3, 12]
+[9, 3, 12]
 \end{python}
 
 \textbf{Lambda functions:}
@@ -229,7 +227,7 @@ lst_new = map(triple, lst)
     add = lambda x, y: x+y
     
     >>> add(1, 2)
-    >>> 3
+    3
     \end{python}
 \end{itemize}
 
@@ -271,29 +269,33 @@ Now, let's import!
 # basic import
 import mathtools
 >>> mathtools.pi
->>> 3.14
+3.14
 >>> mathtools.fact(3)
->>> 6
+6
 
 # import specific names
 from mathtools import fact
->>> fact(3) = 6
+>>> fact(3) 
+6
 
 # import all names
 from mathtools import *
 >>> pi
->>> 3.14
+3.14
 >>> e
->>> 2.718
+2.718
 
 # import and rename
 from mathtools import fact as f
->>> f(3) = 6
+>>> f(3)
+6
 
 # Python has a built-in math module with exp defined
 import math
->>> math.exp(3.14), mathtools.exp(3.14)
->>> (23.103866858722185, 23.103866858722185)
+>>> math.exp(3.14)
+23.103866858722185
+>>> mathtools.exp(3.14)
+23.103866858722185
 	
 \end{python}
 

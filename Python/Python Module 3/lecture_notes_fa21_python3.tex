@@ -161,7 +161,7 @@ for i in range(len(lst)):
     \item Calling a function:
     \begin{python}
     >>> say_hi()
-    >>> hi!
+    hi!
     \end{python}
     \item Functions can take arguments: information that you pass to the code inside the function.
     \begin{python}
@@ -169,7 +169,7 @@ for i in range(len(lst)):
         print('Hi {}, how are you today?'.format(name))
         
     >>> greet('James')
-    >>> Hi James, how are you today?
+	Hi James, how are you today?
     \end{python}
     \item Function can return arguments:
     \begin{python}
@@ -179,7 +179,7 @@ for i in range(len(lst)):
         
     >>> result = add(1, 2)
     >>> print(result)
-    >>> 3
+    3
     \end{python}
     \item Notice that the order of your arguments matters!
     \item If no return statement if provided, Python returns None by default
@@ -196,11 +196,11 @@ for i in range(len(lst)):
     \begin{python}
     >>> lst = [1, 2]
     >>> add(lst[0], lst[1])
-    >>> 3
+    3
     >>> add(*lst)
-    >>> 3
+    3
     >>> print(*lst)
-    >>> 1 2
+    1 2
     \end{python}
     \item Packing an iterable: what if you want to write a function that takes an unspecified number of arguments?
     \begin{python}
@@ -211,9 +211,9 @@ for i in range(len(lst)):
         return sum
     
     >>> add(1, 2, 3)
-    >>> 6
+    6
     >>> add(*lst)
-    >>> 3
+    3
     \end{python}
 \end{itemize}
 
@@ -252,7 +252,8 @@ Whenever an error arises \textbf{and is not handled by your code}, your program 
 4 
 5 print(is_divisible(1,0))
 
->>> Traceback (most recent call last):
+>>> python Demo.py
+Traceback (most recent call last):
   File "demo.py", line 1, in <module>
   File "demo.py", line 2, in f
 ZeroDivisionError: integer division or modulo by zero
@@ -276,8 +277,9 @@ except ZeroDivisionError:
 
 print(is_divisible(3,2))
 
->>> There was a zero division error!
->>> False
+>>> python Demo.py
+There was a zero division error! 
+False
 \end{python}
 \begin{itemize}
     \item to handle any error, catch \verb|Exceptions|
