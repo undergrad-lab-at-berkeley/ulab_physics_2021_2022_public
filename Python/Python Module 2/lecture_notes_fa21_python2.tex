@@ -42,7 +42,7 @@
 \end{itemize}
 
 \section{Python on the Terminal}
-\textbf{Demo:} you can interact directly with the python interpreter from the command line. (demo print statement, math)
+\textbf{Demo:} you can interact directly with the python interpreter from the command line. Demo print statement, math. (cltr-d to quit).
 
 What's happening: you're writing code in the terminal and sending it the interpreter to execute when you press enter.
 
@@ -78,9 +78,9 @@ Here, we're invoking the interpreter and telling it to execute the file we're sp
     \item Jupyter is organized by cells. You can run code in each cell independent of other cells.
     \item Jupyter has code cells and markdown cells where we can type text/math/images
     \item To run cell: shift-enter
-    \item To enter command mode: press esc. In command mode ``dd" to delete cell, ``A" to add cell above, and ``B" to add cell below.
+    \item To enter command mode: press esc. (The  cell is surrounded by a green in edit mode and blue in command mode). In command mode ``dd" to delete cell, ``A" to add cell above, and ``B" to add cell below.
     \item Jupyter notebooks have a kernel. This ``kernel" does not have the same meaning as what we discussed last lecture. Think ``kernel"$=$``Python interpreter"
-    \item Demo interrupt and restart kernel
+    \item Jupyter default autosave interval: 120 seconds
 \end{itemize}
 
 \section{Python Intro}
@@ -95,7 +95,7 @@ Here, we're invoking the interpreter and telling it to execute the file we're sp
     \item Containers for storing data we want to keep track of
     \begin{figure}[H]
 	    \centering
-	    \includegraphics[height=5.1cm] {data}
+	    \includegraphics[height=4.8cm] {data}
 \end{figure}
     \item Demo: We can determine the data type with the type() function
 \end{itemize}
@@ -169,6 +169,7 @@ We use conditionals when we want a block of code to run IF some CONDITION is tru
     \item Demo: if else block
     \item Demo: if elif else block
     \item Demo: if elif elif ... elif else block
+    \item Notice: the program exits the loop IF an \verb|if| or \verb|elif| block is executed. Subsequent \verb|elif| or \verb|else| blocks (if there are any) are ignored.
 \end{itemize}
 
 \section{Next Week}
@@ -181,7 +182,5 @@ We use conditionals when we want a block of code to run IF some CONDITION is tru
     \item For the most part HWs from now on will be in Jupyter notebook. Demo: saving notebook as PDF.
     \item Practice with Jupyter, variables, math, lists, and conditionals
 \end{itemize}
-
-
 
 \end{document}
