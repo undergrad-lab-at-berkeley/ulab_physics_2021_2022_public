@@ -20,6 +20,48 @@
 \usepackage{booktabs}
 \usepackage[bottom]{footmisc}
 
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+		language=Python,
+		basicstyle=\ttm,
+		morekeywords={self},              % Add keywords here
+		commentstyle=\color{gray},
+		keywordstyle=\ttb\color{deepblue},
+		emph={MyClass,__init__},          % Custom highlighting
+		emphstyle=\ttb\color{deepred},    % Custom highlighting style
+		stringstyle=\color{deepgreen},                        % Any extra options here
+		showstringspaces=false
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+	\pythonstyle
+	\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+		\pythonstyle
+		\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
 \usepackage{xcolor}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -29,6 +71,8 @@
 \fancyfoot[R]{Page \thepage}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
+
+
 \begin{document}
 
 \section{Review}
@@ -182,5 +226,60 @@ We use conditionals when we want a block of code to run IF some CONDITION is tru
     \item For the most part HWs from now on will be in Jupyter notebook. Demo: saving notebook as PDF.
     \item Practice with Jupyter, variables, math, lists, and conditionals
 \end{itemize}
+
+\appendix
+\section{(Optional) String Formatting}
+
+\textbf{Formatting text}: \pythoninline{print('pi is {}'.format(math.pi))}
+
+A useful list of options for formatting numbers:
+
+\begin{table}[H]
+	\begin{tabular}{l | l | l | l}
+		\textbf{Number} & \textbf{Format}            & \textbf{Output} & \textbf{Description}                          \\
+		\hline
+		3.1415926       & \{:.2f\}                   & 3.14            & Format float 2 decimal places                 \\
+		3.1415926       & \{:+.2f\}                  & +3.14           & Format float 2 decimal places with sign       \\
+		-1              & \{:+.2f\}                  & -1.00           & Format float 2 decimal places with sign       \\
+		2.71828         & \{:.0f\}                   & 3               & Format float with no decimal places           \\
+		5               & \{:0\textgreater{}2d\}     & 05              & Pad number with zeros (left padding, width 2) \\
+		5               & \{:x\textless{}4d\}        & 5xxx            & Pad number with x’s (right padding, width 4)  \\
+		10              & \{:x\textless{}4d\}        & 10xx            & Pad number with x’s (right padding, width 4)  \\
+		1000000         & \{:,\}                     & 1,000,000       & Number format with comma separator            \\
+		0.25            & \{:.2\%\}                  & 25.00\%         & Format percentage                             \\
+		1000000000      & \{:.2e\}                   & 1.00e+09        & Exponent notation                             \\
+		13              & \{:10d\}                   & 13              & Right aligned (default, width 10)             \\
+		13              & \{:\textless{}10d\}        & 13              & Left aligned (width 10)                       \\
+		13              & \{:\textasciicircum{}10d\} & 13              & Center aligned (width 10)                    
+	\end{tabular}
+\end{table}
+
+\textbf{We can substitute multiple variables:}
+\begin{python}
+s1 = "cats"
+s2 = "dogs"
+s3 = " it's raining {} and {} ".format(s1, s2)
+
+>>> s3
+"it's raining cats and dogs"
+\end{python}
+
+\textbf{Using numbered parameters:}
+\begin{python}
+s = "{0}: Oh {1}, {1}! Wherefore art thou {1}?".format("Juliet", "Romeo")
+
+>>> s
+'Juliet: Oh Romeo, Romeo! Wherefore art thou Romeo?'
+\end{python}
+
+\textbf{F-Strings:}
+\begin{python}
+book = "Lord of the Rings"
+author = "J.R.R. Tolkien"
+s = f"The {book} was written by {author}" 
+
+>>> s
+'The Lord of the Rings was written by J.R.R. Tolkien'
+\end{python}
 
 \end{document}
