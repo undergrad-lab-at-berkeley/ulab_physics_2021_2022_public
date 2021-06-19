@@ -215,6 +215,17 @@ for i in range(len(lst)):
     >>> add(*lst)
     3
     \end{python}
+	We can also pack a keyworded iterable:
+\begin{python}
+def print_keyword_args(**kwargs):
+	for key in kwargs:
+		print('{}-->{}'.format(key, kwargs[key]))
+		
+>>> print_keyword_args(first_name='Undergrad', last_name='Lab' )
+first_name-->Undergrad
+last_name-->Lab
+\end{python}
+
 \end{itemize}
 
 \textbf{Demo: finding all primes up to 1000}
