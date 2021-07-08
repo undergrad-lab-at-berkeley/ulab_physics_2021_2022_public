@@ -66,7 +66,7 @@ showstringspaces=false
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyfoot[C]{\color{lightgray} Python Lecture V Notes}
+\fancyfoot[C]{\color{lightgray} Python Lecture V Notes---Yi J Zhu}
 \fancyfoot[L]{\color{lightgray} \today}
 \fancyfoot[R]{Page \thepage}
 \renewcommand{\headrulewidth}{0pt}
@@ -375,10 +375,10 @@ However, we can use BROADCASTING to perform operations on arrays of UNEQUAL shap
         &\text{(3, 2)}\\
         &\text{(1, 2)}
     \end{align*}
-    The respective dimensions must be (a) equal or (b) one of them is 1. \textbf{Otherwise, the arrays can not be broadcast.} In this case, axis-0 (3 and 1) are not equal but contains one 1, and axis-1 (2 and 2) are equal.
-    \item If the respective dimensions are equal, the operation is applied element wise. If the respective dimensions are not equal, but one dimension is 1, then the dimension 1 is broadcast.
+    Each of the respective dimensions must be (a) equal or (b) unequal but one dimension is 1. \textbf{Otherwise, the arrays can not be broadcast.} In this case, axis-0 (3 and 1) are not equal but contains one 1, and axis-1 (2 and 2) are equal.
+    \item For each of the dimensions, if the respective dimensions are equal, the operation is applied element wise. If the respective dimensions are not equal, but one dimension is 1, then the dimension of size 1 is broadcast to the larger dimension.
 \end{enumerate}
 
-   This is fully generalized. However, broadcasting can get nasty with high dimensions. As always, if you're getting lost in the complexity of your data, you should probably reconsider it's format. 
+   This is fully generalized. However, broadcasting can get nasty with high dimensions. As always, if you're getting lost in the complexity of your data structure, you should probably reconsider it's format. 
 
 \end{document}

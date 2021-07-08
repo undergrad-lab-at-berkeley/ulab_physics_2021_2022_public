@@ -66,7 +66,7 @@ showstringspaces=false
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyfoot[C]{\color{lightgray} Python Lecture III Notes}
+\fancyfoot[C]{\color{lightgray} Python Lecture III Notes---Yi J Zhu}
 \fancyfoot[L]{\color{lightgray} \today}
 \fancyfoot[R]{Page \thepage}
 \renewcommand{\headrulewidth}{0pt}
@@ -192,7 +192,7 @@ for i in range(len(lst)):
     >>> get_harmonic(100, 3) #300
     >>> get_harmonic(100, harmonic=3) #300, more explicit
     \end{python}
-    \item Unpacking an iterable: taking an iterable object (e.g. list) and unpacking it's contents.
+    \item (OPTIONAL) Unpacking an iterable: taking an iterable object (e.g. list) and unpacking it's contents.
     \begin{python}
     >>> lst = [1, 2]
     >>> add(lst[0], lst[1])
@@ -202,7 +202,7 @@ for i in range(len(lst)):
     >>> print(*lst)
     1 2
     \end{python}
-    \item Packing an iterable: what if you want to write a function that takes an unspecified number of arguments?
+    \item (OPTIONAL) Packing an iterable: what if you want to write a function that takes an unspecified number of arguments?
     \begin{python}
     def add(*args):
         sum = 0
@@ -226,6 +226,14 @@ first_name-->Undergrad
 last_name-->Lab
 \end{python}
 
+\item Docstrings: string literals (\pythoninline{'''}) that appear right after the definition of a function, class, or module. Docstrings are vital in properly documenting your code and should describe the functions arguments, functions, return types, and exceptions thrown.
+\begin{python}
+	def multiply(a, b):
+		''' Returns the product of two arguments.'''
+		return a*b
+\end{python}
+\item The docstring is associated with the \verb|.__doc__| variable. To view a functions docstring in Jupyter, press shift-tab with your cursor on a call statement.
+
 \end{itemize}
 
 \textbf{Demo: finding all primes up to 1000}
@@ -235,6 +243,7 @@ last_name-->Lab
 
 \begin{python}
 def is_prime(n):
+	''' Determines if an integer n is prime.'''
     for i in range(2, int(n/2)):
         if n%i==0:
             return False
