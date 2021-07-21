@@ -1,0 +1,97 @@
+\documentclass[addpoints,12pt]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{amsmath}
+\numberwithin{equation}{section}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{physics}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{hyperref}
+\hypersetup{colorlinks = true, urlcolor = blue, linkcolor = red, citecolor = red}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage[bottom]{footmisc}
+
+\usepackage{xcolor}
+\firstpagefooter{\color{lightgray} \today}{}{Page \thepage}
+\runningfooter{\color{lightgray} \today}{}{Page \thepage}
+
+\begin{document}
+	
+	\begin{center}
+		\textbf{\Large{ULAB Physics \& Astronomy\\LaTeX Module}}
+	\end{center}
+	\begin{center}
+		due: TBD
+	\end{center}
+	
+	In this LaTeX module, you will be replicating the document \verb|report.pdf|. In the process, we will review many useful LaTeX commands and demonstrate how to quickly create professional looking documents.
+	
+	\begin{questions}
+		
+		\question[10] Sign in to your Overleaf account and create a new blank project. By default, Overleaf's .tex file should have the preamble (in addition to some title commands):
+		\begin{verbatim}
+		    \documentclass{article}
+		    \usepackage[utf8]{inputenc}
+		\end{verbatim}
+		This sets the basic properties of the document. However, the default values are far from ideal. For example, when you compile the document (ctrl-enter) notice the wide margin!
+		
+		To get you started, replace the preamble with:
+		\begin{verbatim}
+    \documentclass[12pt]{article}
+    \usepackage[utf8]{inputenc}
+    \usepackage[letterpaper, portrait, margin=1in]{geometry}
+    
+    % Additional packages:
+    % floats and images
+    \usepackage{graphicx}
+    \usepackage{float}
+    % math and physics symbols
+    \usepackage{amsmath}
+    \usepackage{physics}
+    % references and coloring
+    \usepackage{hyperref}
+    \hypersetup{colorlinks = true, citecolor = red}
+    % paragraph layout
+    \usepackage{parskip}		
+\end{verbatim}
+
+    This sets various document properties to fairly standard values. In addition, many useful packages are imported. You can read more about each line to figure out what's happening. Notice that margins are more reasonable when you re-compile!
+		
+	\question[10] Fill in the title commands with the appropriate values. Your title should match the title in the example document. Replace the date with Today's date. (hint: look into the \verb|\today| command)
+	
+	\question[20] Replicate the introduction section. The figure has a width of 8 cm and don't forget about the caption! (hints: \href{https://www.overleaf.com/learn/latex/Sections_and_chapters}{sections},  \href{https://www.overleaf.com/learn/latex/Inserting_Images}{figures (see ``Labels and cross-references")}) Note: instead of \verb|\ref|, I used \verb|\autoref|.
+	
+	\question[10] Replicate the methods section. For now, don't worry about the citation for NumPy and SciPy.
+	
+	\question[20] We will be using \href{https://www.overleaf.com/learn/latex/Bibliography_management_with_bibtex}{Bibtex} to create citations. The \verb|ref.bib| file has been provided for you. Before the end of the document (\verb|\end{document}|), include the following commands:
+	
+	\begin{verbatim}
+        \bibliographystyle{ieeetr}
+        \bibliography{ref.bib}
+        \nocite{*}	
+    \end{verbatim}
+	You should see a references section appear with a bibliography! Now, use the \verb|\cite| command to include the appropriate citations in the methods section.
+	
+	Note: it is not normally necessary to cite packages such as NumPy, be we want to give you some practice with Bibtex.
+	
+	\question[20] Replicate the results section. The figure has a width of 13 cm. (hint: $\nu$ is the character ``nu")
+	
+	\textbf{Submission:} Congrats on your completing your LaTeX report. Hopefully this experience has shown you that once you've become familiar with all the new commands, LaTeX is a great way to quickly typeset organized, well-formatted, and professional-looking documents. 
+	
+	Download the .tex file for your project (menu on top left/download source) and submit to bCourses.
+	
+	\question[0] (Optional) Overleaf has an expansive catalog of templates for a variety of documents. Find a template for a CV and type up your CV!
+	
+	
+	
+	\end{questions}
+\end{document}
