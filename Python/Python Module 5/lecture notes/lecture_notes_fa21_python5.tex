@@ -382,5 +382,78 @@ However, we can use BROADCASTING to perform operations on arrays of UNEQUAL shap
 \end{enumerate}
 
    This is fully generalized. However, broadcasting can get nasty with high dimensions. As always, if you're getting lost in the complexity of your data structure, you should probably reconsider it's format. 
+   
+  
+  \section{(Optional) Python Speedups Using C}
+  
+  Earlier, we mentioned that Numpy is fast because it is implemented in C. What does this mean? After all, Numpy is a \textit{Python} package. 
+  
+  In short, the core functionality of Numpy (ndarrays and vectorized operations) is written in the programming language C with C syntax, C variables, etc. However, Numpy provides Python wrapper functions that allows the user to call Python functions (e.g. np.ndarray()) to perform operations in what is really C behind the scenes.
+  
+  Why are we going to all this trouble? \textit{Speed.} Python has considerably more overhead than C. This means that for the same basic operation, Python needs to perform more work and use more memory than C. 
+  
+  For example, Python is dynamically typed: a variable can hold any data type. While this is convenient for us, the programmer, it takes additional memory and operations behind-the-scenes to implement. On the other hand, C is strongly typed: you must define beforehand the variable type. Thus, the program will only allocate as much memory as the type requires and there is no run-time ambiguity about the data type a variable contains. This is reflected in the fact that  Numpy arrays can only store a single type of data.
+  
+  While these optimizations may seem minor, they add up. For example, let's compare a function that computes the Fibonacci sequence written in both C and Python. First, we implement \verb|fib()| in C,
+  
+  \begin{python}
+	# fib.c
+	int fib(int n) {
+	    if(n<2) {
+	       return n;
+	    }
+	    return fib(n-1) + fib(n-2)
+	}
+  \end{python}
+	
+	Making use of the \verb|ctypes| module, we can write our own wrapper function to use the \verb|fib| function above in Python. 
 
-\end{document}
+\begin{python}
+	# fib.py
+	import time
+	import ctypes
+	
+	### C implementation of fib ###
+	# import fib function from fib.so DLL
+	_libc = ctypes.CDLL('fib.so')
+	# python wrapper for C function
+	def c_fib(n):
+	    return _libc.fib(ctypes.c_int(n))
+	
+\end{python}
+
+Let's now implement the exact same function, but in Python.
+
+\begin{python}
+	### python implementation of fib ###
+	def py_fib(n):
+	    if n<2:
+	        return n
+	    return py_fib(n-1) + py_fib(n-2)
+	
+\end{python}
+Comparing the run times,
+\begin{python}
+	print('py_fib(36): ')
+	start = time.time()
+	print(f'\tresult: {py_fib(36)}')
+	end = time.time()
+	print(f'\ttime: {end-start:.3f} sec')
+	
+	print('c_fib(36): ')
+	start = time.time()
+	print(f'\tresult: {c_fib(36)}')
+	end = time.time()
+	print(f'\ttime: {end-start:.3f} sec')
+	
+	>>> python fib.py
+	py_fib(36): 
+	    result: 14930352
+	    time: 7.712 sec
+	c_fib(36): 
+	    result: 14930352
+	    time: 0.147 sec
+\end{python}
+  
+\verb|c_fib| is considerably faster than \verb|py_fib|---this is why packages such as Numpy and Scipy are so popular. We can take advantage of the speedups of using C while retaining the convenience of writing code in Python!
+	\end{document}

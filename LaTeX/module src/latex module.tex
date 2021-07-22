@@ -33,7 +33,7 @@
 		due: TBD
 	\end{center}
 	
-	In this LaTeX module, you will be replicating the document \verb|report.pdf|. In the process, we will review many useful LaTeX commands and demonstrate how to quickly create professional looking documents.
+	In this LaTeX module, you will be replicating the document \verb|report.pdf|. In the process, we will review many useful LaTeX commands and concepts.
 	
 	\begin{questions}
 		
@@ -42,7 +42,7 @@
 		    \documentclass{article}
 		    \usepackage[utf8]{inputenc}
 		\end{verbatim}
-		This sets the basic properties of the document. However, the default values are far from ideal. For example, when you compile the document (ctrl-enter) notice the wide margin!
+		This sets the basic properties of the document. However, the default values are not always ideal. For example, when you compile the document (ctrl-enter) notice the wide margin!
 		
 		To get you started, replace the preamble with:
 		\begin{verbatim}
@@ -66,31 +66,35 @@
 
     This sets various document properties to fairly standard values. In addition, many useful packages are imported. You can read more about each line to figure out what's happening. Notice that margins are more reasonable when you re-compile!
 		
-	\question[10] Fill in the title commands with the appropriate values. Your title should match the title in the example document. Replace the date with Today's date. (hint: look into the \verb|\today| command)
+	\question[10] Fill in the title commands with the appropriate values. Your title should match that of the example document. Replace the date with Today's date. (hint: look into the \verb|\today| command. The date may be off by one day because Overleaf's servers might be in a different timezone.)
 	
-	\question[20] Replicate the introduction section. The figure has a width of 8 cm and don't forget about the caption! (hints: \href{https://www.overleaf.com/learn/latex/Sections_and_chapters}{sections},  \href{https://www.overleaf.com/learn/latex/Inserting_Images}{figures (see ``Labels and cross-references")}) Note: instead of \verb|\ref|, I used \verb|\autoref|.
+	\question[20] Replicate the introduction section. The figure has a width of 8 cm and don't forget about the caption! (hints: \href{https://www.overleaf.com/learn/latex/Sections_and_chapters}{sections} and \href{https://www.overleaf.com/learn/latex/Inserting_Images}{figures (see ``Labels and cross-references")}) Note: instead of \verb|\ref|, I used \verb|\autoref|.
 	
-	\question[10] Replicate the methods section. For now, don't worry about the citation for NumPy and SciPy.
+	\question[10] Replicate the methods section. For this part, ignore the citation for NumPy and SciPy.
 	
-	\question[20] We will be using \href{https://www.overleaf.com/learn/latex/Bibliography_management_with_bibtex}{Bibtex} to create citations. The \verb|ref.bib| file has been provided for you. Before the end of the document (\verb|\end{document}|), include the following commands:
+	\question[20] Citations: 
+	\begin{parts}
+
+	\part Let's go back and add in the citations with \href{https://www.overleaf.com/learn/latex/Bibliography_management_with_bibtex}{Bibtex}. The \verb|ref.bib| file has been provided for you. Hint: before the end of the document (\verb|\end{document}|), include the following commands:
 	
 	\begin{verbatim}
         \bibliographystyle{ieeetr}
         \bibliography{ref.bib}
         \nocite{*}	
     \end{verbatim}
-	You should see a references section appear with a bibliography! Now, use the \verb|\cite| command to include the appropriate citations in the methods section.
+	Make sure you know what each line means! You should see a references section appear with a bibliography! 
 	
-	Note: it is not normally necessary to cite packages such as NumPy, be we want to give you some practice with Bibtex.
+	\part Now, use the \verb|\cite| command to include the appropriate citations in the methods section. Note: normally it is not necessary to cite packages such as NumPy, but we want to give you some practice with Bibtex.
+	
+	\end{parts}
 	
 	\question[20] Replicate the results section. The figure has a width of 13 cm. (hint: $\nu$ is the character ``nu")
 	
-	\textbf{Submission:} Congrats on your completing your LaTeX report. Hopefully this experience has shown you that once you've become familiar with all the new commands, LaTeX is a great way to quickly typeset organized, well-formatted, and professional-looking documents. 
+	\textbf{Submission:} Congrats on your completing your LaTeX report! Hopefully this module has demonstrated that LaTeX is a great way to quickly typeset organized, well-formatted, and professional-looking documents. 
 	
 	Download the .tex file for your project (menu on top left/download source) and submit to bCourses.
 	
-	\question[0] (Optional) Overleaf has an expansive catalog of templates for a variety of documents. Find a template for a CV and type up your CV!
-	
+	\question[0] (Optional) Overleaf has an expansive catalog of templates. Find a template for a CV and type up your CV!
 	
 	
 	\end{questions}
