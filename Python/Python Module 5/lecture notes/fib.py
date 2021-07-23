@@ -5,7 +5,7 @@ import ctypes
 # gcc -shared -o fib.so -fPIC fib.c
 _libc = ctypes.CDLL('fib.so')
 c_fib = _libc.fib
-c_fib.restype = int
+c_fib.restype = ctypes.c_int
 c_fib.argtypes = [ctypes.c_int]
 
 # python implementation of fib
@@ -15,14 +15,21 @@ def py_fib(n):
 	return py_fib(n-1) + py_fib(n-2)
 
 #benchmark
+start = 0
+def tik():
+	global start
+	start = time.time()
+def tok():
+	end = time.time()
+	print(f'\t{end-start:3f} sec')
+
+
 print('py_fib(36): ')
-start = time.time()
-print(f'\tresult: {py_fib(36)}')
-end = time.time()
-print(f'\ttime: {end-start:.3f} sec')
+tik()
+print(f'\t{py_fib(36)}')
+tok()
 
 print('c_fib(36): ')
-start = time.time()
-print(f'\tresult: {c_fib(36)}')
-end = time.time()
-print(f'\ttime: {end-start:.3f} sec')
+tik()
+print(f'\t{c_fib(36)}')
+tok()
