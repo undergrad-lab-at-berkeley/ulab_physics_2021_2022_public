@@ -413,19 +413,20 @@ However, we can use BROADCASTING to perform operations on arrays of UNEQUAL shap
 	import time
 	import ctypes
 	
-	### C implementation of fib ###
-	# import fib function from fib.so DLL
+	# C implementation of fib with Python wrapper
+	# gcc -shared -o fib.so -fPIC fib.c
 	_libc = ctypes.CDLL('fib.so')
-	# python wrapper for C function
-	def c_fib(n):
-	    return _libc.fib(ctypes.c_int(n))
+	c_fib = _libc.fib
+	c_fib.restype = int
+	c_fib.argtypes = [ctypes.c_int]
+	
 	
 \end{python}
 
 Let's now implement the exact same function, but in Python.
 
 \begin{python}
-	### python implementation of fib ###
+	# python implementation of fib 
 	def py_fib(n):
 	    if n<2:
 	        return n
@@ -449,10 +450,10 @@ Comparing the run times,
 	>>> python fib.py
 	py_fib(36): 
 	    result: 14930352
-	    time: 7.712 sec
+	    time: 5.697 sec
 	c_fib(36): 
-	    result: 14930352
-	    time: 0.147 sec
+    	result: 14930352
+	    time: 0.110 sec
 \end{python}
   
 \verb|c_fib| is considerably faster than \verb|py_fib|---this is why packages such as Numpy and Scipy are so popular. We can take advantage of the speedups of using C while retaining the convenience of writing code in Python!
