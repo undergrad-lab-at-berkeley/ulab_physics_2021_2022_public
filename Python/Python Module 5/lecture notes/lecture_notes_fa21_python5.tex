@@ -388,7 +388,7 @@ However, we can use BROADCASTING to perform operations on arrays of UNEQUAL shap
   
   Earlier, we mentioned that Numpy is fast because it is implemented in C. What does this mean? After all, Numpy is a \textit{Python} package. 
   
-  In short, the core functionality of Numpy (ndarrays and vectorized operations) is written in the programming language C with C syntax, C variables, etc. However, Numpy provides Python wrapper functions that allows the user to call Python functions (e.g. np.ndarray()) to perform operations in what is really C behind the scenes.
+  In short, the core functionality of Numpy (ndarrays and vectorized operations) is written in the programming language C with C syntax, C variables, etc. However, Numpy provides Python wrapper functions that allows the user to call Python functions (e.g. np.ndarray()) and perform operations in what is really C behind the scenes.
   
   Why are we going to all this trouble? \textit{Speed.} Python has considerably more overhead than C. This means that for the same basic operation, Python needs to perform more work and use more memory than C. 
   
@@ -406,7 +406,7 @@ However, we can use BROADCASTING to perform operations on arrays of UNEQUAL shap
 	}
   \end{python}
 	
-	Making use of the \verb|ctypes| module, we can write our own wrapper function to use the \verb|fib| function above in Python. 
+	Making use of the \verb|ctypes| module, we define a wrapper function \verb|c_fib()| to use the C-implemented \verb|fib| function (above) in Python. 
 
 \begin{python}
 	# fib.py
@@ -433,7 +433,7 @@ Let's now implement the exact same function, but in Python.
 	    return py_fib(n-1) + py_fib(n-2)
 	
 \end{python}
-Comparing the run times,
+Benchmarking the run times,
 \begin{python}
 	start = 0
 	def tik():
@@ -456,10 +456,10 @@ Comparing the run times,
 	
 	>>> python fib.py
 	py_fib(36): 
-	    result: 14930352
+	    14930352
 	    time: 5.697 sec
 	c_fib(36): 
-    	result: 14930352
+	    14930352
 	    time: 0.110 sec
 \end{python}
   
