@@ -416,9 +416,14 @@ However, we can use BROADCASTING to perform operations on arrays of UNEQUAL shap
 	# C implementation of fib with Python wrapper
 	# gcc -shared -o fib.so -fPIC fib.c
 	_libc = ctypes.CDLL('fib.so')
-	c_fib = _libc.fib
-	c_fib.restype = ctypes.c_int
-	c_fib.argtypes = [ctypes.c_int]
+	
+	# one way to do this
+	# c_fib = _libc.fib
+	# c_fib.restype = ctypes.c_int
+	# c_fib.argtypes = [ctypes.c_int]
+	
+	def c_fib(a, b):
+	    return libc.fib(c_int(a), c_int(b))
 	
 	
 \end{python}
