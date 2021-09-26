@@ -21,25 +21,31 @@
 \usepackage[bottom]{footmisc}
 
 \usepackage{xcolor}
+
 \firstpagefooter{\color{lightgray} \today}{}{Page \thepage}
 \runningfooter{\color{lightgray} \today}{}{Page \thepage}
 
 \begin{document}
 	
+	\vspace*{-3cm}{\footnotesize\hfill Copyright \copyright\ 2021, Undergraduate Lab at Berkeley}
+	\vspace{0.5cm}
+	
 	\begin{center}
 		\textbf{\Large{ULAB Physics \& Astronomy\\Python Module 1}}
 	\end{center}
 	\begin{center}
-		due: TBD
+		Due: October 3, 2021
 	\end{center}
 	
 	\begin{questions}
 		
+		\question[0] Follow the instructions on the installation guide to install Bash (section 3) and Anaconda (section 4). You will need this for this module and for next week!
+		
 		\question[10] Bash commands follow the syntax \\\verb|[command] [flags/options] [other arguments]|\\Some commands have fixed behavior and do not require any additional parameters. 
 		
-		However, you will often need to specify arguments. For example, \verb|cd ~/Desktop| runs the command \verb|cd| (change directory) and indicates that we would like to navigate to the desktop. 
+		However, you will often need to specify arguments. For example, \verb|cd |$\sim$\verb|/Desktop| runs the command \verb|cd| (change directory) with the argument \verb|cd |$\sim$\verb|/Desktop|.
 		
-		Flags are dashes followed by flag name. We use flags to indicate that a program should behave differently. Each command has it's own set of flags and options. For example, \verb|ls| with no flags lists the files in your current directory. When we include the list-all flag  \verb|ls -a| the program will list all files, including those that are normally hidden.
+		In addition to arguments, we use flags to indicate that a command should behave differently. Flags are dashes followed by flag name. Each command has it's own set of flags and options. For example, the default (no flags) behavior of \verb|ls| is to list the files in your current directory. When we include the list-all flag  \verb|ls -a| the program will list all files, including those that are normally hidden.
 		
 		
 		For this exercise, describe the function of each of the following Bash commands. Explain what arguments you need to provide (if any). Hint: \hyperref{https://ss64.com/bash/}{}{}{https://ss64.com/bash/}
@@ -61,9 +67,9 @@
 		
 		\question[10] In Bash, we call folders ``directories." Directories can contain other directories or files. The root directory is the directory on your computer that contains all other directories and files. Often times, we will find the Applications, Users, etc. folders in the root directory.
 		
-		We can specify the path (location) of a file as an absolute path or a relative path. The absolute path is the location of a file from the root directory. The relative path is the location of a file from the current working directory (\verb|pwd|).
+		We can specify the path (location) of a file as an absolute path or a relative path. The absolute path is the location of a file from the root directory. The relative path is the location of a file from the current working directory (which you can determine with the command \verb|pwd|).
 		
-		Special symbols that stand for particular directories:
+		Bash defines special symbols for particularly useful directories:
 		
 		``\verb|/|" root directory
 		
@@ -87,12 +93,13 @@
 			
 			\part What is the relative path to \verb|/User/System|?
 			
-			\part The \verb|cd| command accepts both absolute and relative paths. What is the command to navigate to the ulab folder?
+			\part The \verb|cd| command accepts both absolute and relative paths. What is (one) command to navigate to the ulab folder?
+			
+			\part Is \verb|/User/ulab/bar.pdf| a directory?
 			
 		\end{parts}
 
 		\vspace{.5in}
-		
-		\question[0] Follow the instructions on the installation guide to install Anaconda. You will need this for next week!
+	
 	\end{questions}
 \end{document}
