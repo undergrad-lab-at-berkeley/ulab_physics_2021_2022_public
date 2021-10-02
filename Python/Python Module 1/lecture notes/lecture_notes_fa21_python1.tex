@@ -24,12 +24,14 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyfoot[C]{\color{lightgray} Python Lecture I Notes---Yi J Zhu}
+\fancyfoot[C]{\color{lightgray} Python Lecture I Notes}
 \fancyfoot[L]{\color{lightgray} \today}
 \fancyfoot[R]{Page \thepage}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 \begin{document}
+
+\vspace*{-2.5cm}{\footnotesize\hfill Copyright \copyright\the\year{} Yi J Zhu}
 
 \section{Introduction}
 \textbf{Goals for the ULAB cs curriculum:}
@@ -71,6 +73,7 @@ Base LOW: current can not pass for collector to emitter
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=11cm] {and.png}
+	\caption{Image source: http://hyperphysics.phy-astr.gsu.edu/}
 \end{figure}
 
 \textbf{3: CPU (central processing unit)} a collection of logic gate that can perform more complex operations: arithmetic, logic, controlling, input/output (i.e. reading from memory)
@@ -91,7 +94,8 @@ No. While we have a computer, but how do we program it to do what we want?
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=6cm] {punch}
+	\includegraphics[width=9cm] {punch}
+	\caption{Image source: Flickr, `Used Punchcard'}
 \end{figure}
 
 \textbf{Now: }we have keyboards, monitors, and operating systems. But there's a bit more to the story...
@@ -145,17 +149,22 @@ Python is a high-level programming language with human-readable syntax.
     \item The interpreter \textit{interprets} and executes the python code
     \item You can think of the interpreter as translating your Python code into machine code for the computer to run.
     \item When you download Python, you're downloading the interpreter.
-\end{itemize}
+    
+    \begin{figure}[H]
+    	\centering
+    	\includegraphics[width=13cm] {py}
+    \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=13cm] {py}
-\end{figure}
+	\item Simple picture: interpreter converts text (Python code) to machine code.
+	\item More complicated picture: the interpreter is composed of a compiler to bytecode and a PVM (C program) that actually runs the Python instructions. BENEFIT: platform independent. Machine code for one processor will not necessarily run on another. As long as we a .py or .pyc file and an appropriate PVM, we can run on any processor!\footnote{But didn't we just delay the problem of compiling a Python file into the problem of compiling a C file? What language do we use to compile a C file? With C! This is known as compiler bootstrapping!}
+
+
+\end{itemize}
 
 \textbf{Text Editors and IDEs}:
 \begin{itemize}
-    \item \textbf{Demo}: writing a Python program in a basic text editor and running on terminal.
-    \item While you can write Python code on any text edit (try using Word and keeping your sanity at the same time...) there are special programs called integrated development environments that act as fancy text editors to write, run, test, and debug code.
+    \item \textbf{Demo}: writing a Python program in a basic text editor (e.g. notepad) and running on terminal.
+    \item While you can write Python code on any text editor (try using Word and keeping your sanity at the same time...) there are special programs called integrated development environments that act as fancy text editors to write, run, test, and debug code.
     \item Example of IDE: PyCharm, Atom, Jupyter Notebook etc. \textbf{We will be using Jupyter Notebook: a very popular IDE in the lab!}
 \end{itemize}
 
