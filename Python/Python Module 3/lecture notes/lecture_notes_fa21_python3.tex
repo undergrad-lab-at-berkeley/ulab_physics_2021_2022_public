@@ -73,11 +73,16 @@ showstringspaces=false
 \renewcommand{\footrulewidth}{0pt}
 \begin{document}
 
+\vspace*{-2.5cm}{\footnotesize\hfill Copyright \copyright\the\year{} Yi J Zhu}
+
 \section{Review}
 
 \textbf{Last time:}
 \begin{itemize}
     \item Last week's HW was using Jupyter notebook. Any questions on Jupyter?
+    \begin{itemize}
+    	\item I use Jupyter notebook on the browser...so are my notebooks stored online?
+    \end{itemize}
     \item Basic Python types and operations.
     \item Conditionals
 \end{itemize}
@@ -238,7 +243,12 @@ last_name-->Lab
 
 \textbf{Demo: finding all primes up to 1000}
 \begin{itemize}
-    \item We only need to check factors up to $\lfloor n/2 \rfloor$. Proof: if $x\cdot y = n$ , then $y = n/x \leq 2$, which we have already checked.
+    \item We only need to check factors up to $\lfloor n/2 \rfloor$. Proof: suppose $\{x_1, x_2\}$ are factors of $n$. Then,
+    \begin{equation}
+    		x_1\cdot x_2 = n \Longrightarrow
+			x_2 = n/x_1 \leq n/2 \quad \text{because both }x_1, x_2>2
+	\end{equation}
+	Therefore, either $x_1<n/2$ or $x_2<n/2$.
 \end{itemize}
 
 \begin{python}
