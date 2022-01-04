@@ -66,12 +66,14 @@ showstringspaces=false
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyfoot[C]{\color{lightgray} Python Lecture V Notes---Yi J Zhu}
+\fancyfoot[C]{\color{lightgray} Python Lecture V Notes}
 \fancyfoot[L]{\color{lightgray} \today}
 \fancyfoot[R]{Page \thepage}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 \begin{document}
+	
+\vspace*{-2.5cm}{\footnotesize\hfill Copyright \copyright\the\year{} Yi J Zhu}
 
 \section{Review}
 
@@ -105,9 +107,9 @@ showstringspaces=false
 \textbf{ndarray example}:
 \begin{python}
 import numpy as np
-a = array([[ 0,  1,  2,  3,  4],
-           [ 5,  6,  7,  8,  9],
-           [10, 11, 12, 13, 14]])
+a = np.array([[ 0,  1,  2,  3,  4],
+              [ 5,  6,  7,  8,  9],
+              [10, 11, 12, 13, 14]])
 
 >>> a.shape
 (3,5)
@@ -165,8 +167,8 @@ a = array([[ 0,  1,  2,  3,  4],
         \item The axis convention is \textbf{OUT TO IN}. For example: the 3d array in the figure above has 3 degrees of freedom:
         \begin{itemize}
             \item \textbf{axis-0}: which one of the \textbf{two} 2d arrays? (\verb|a[0]| or \verb|a[1]|)
-            \item \textbf{axis-1}: given one of the 2d arrays, which of the \textbf{three} 1d arrays (\verb|a[i,0]| or \verb|a[i,1]| or \verb|a[i,2]|)
-            \item \textbf{axis-2:} given one of the 1d arrays, which of the \textbf{four} elements? (\verb|a[i,j,0]| or \verb|a[i,j,1]| or \verb|a[i,j,2]| or \verb|a[i,j,3]|)
+            \item \textbf{axis-1}: given one of the 2d arrays, which of the $2\times 3= $ \textbf{six} 1d arrays (\verb|a[i,0]| or \verb|a[i,1]| or \verb|a[i,2]|)
+            \item \textbf{axis-2:} given one of the 1d arrays, which of the $6\times4= $ \textbf{twenty-four} elements? (\verb|a[i,j,0]| or \verb|a[i,j,1]| or \verb|a[i,j,2]| or \verb|a[i,j,3]|)
         \end{itemize}
         \item For 2d array: \verb|(row, col)|. For 3d array: \verb|(matrix, row, col)|.
         \item This is why the array has shape \verb|(2,3,4)|
@@ -269,6 +271,9 @@ array([[[ 0,  1,  2,  3],
 >>> np.sum(a)
 276
 >>> # sum ALONG the 0 axis
+\end{python}
+$\text{sum}[j,k] = \sum_{\text{all }i} a[i,j,k]$
+\begin{python}
 >>> np.sum(a, axis=0)
 array([[12, 14, 16, 18],
        [20, 22, 24, 26],
@@ -316,7 +321,7 @@ Numpy has much more functionality that we won't have the chance to cover (to nam
 
 \appendix
 \section{(Optional) Array Broadcasting}
-When two arrays have the same shape, we can easily understand what an element-wise operation does---it applies some operation between corresponding elements of the arrays!
+Broadcasting describes how numpy treats arrays with different shapes during arithmetic operations. When two arrays have the same shape, we can easily understand what an element-wise operation does---it applies some operation between corresponding elements of the arrays!
 
 For example (both arrays have \verb|shape=(2,3)|),
 \begin{equation*}
@@ -411,19 +416,19 @@ However, we can use BROADCASTING to perform operations on arrays of UNEQUAL shap
 \begin{python}
 	# fib.py
 	import time
-	import ctypes
+	from ctypes import *
 	
 	# C implementation of fib with Python wrapper
 	# gcc -shared -o fib.so -fPIC fib.c
 	_libc = ctypes.CDLL('fib.so')
 	
-	# one way to do this
+	# another way to do this
 	# c_fib = _libc.fib
 	# c_fib.restype = ctypes.c_int
 	# c_fib.argtypes = [ctypes.c_int]
 	
-	def c_fib(a, b):
-	    return libc.fib(c_int(a), c_int(b))
+	def c_fib(n):
+	    return _libc.fib(c_int(n))
 	
 	
 \end{python}

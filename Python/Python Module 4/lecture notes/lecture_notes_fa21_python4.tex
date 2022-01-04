@@ -66,19 +66,22 @@ showstringspaces=false
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyfoot[C]{\color{lightgray} Python Lecture IV Notes---Yi J Zhu}
+\fancyfoot[C]{\color{lightgray} Python Lecture IV Notes}
 \fancyfoot[L]{\color{lightgray} \today}
 \fancyfoot[R]{Page \thepage}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 \begin{document}
+	
+\vspace*{-2.5cm}{\footnotesize\hfill Copyright \copyright\the\year{} Yi J Zhu}
 
 \section{Review}
 
 \textbf{Last time:}
 \begin{itemize}
     \item Conditionals, loops, functions, errors
-    \item Questions?
+    \item Questions? How are the homeworks?
+    \item Review \verb|reverse| problem from last week's HW using Python Tutor.
 \end{itemize}
 
 \textbf{Today:} we will discuss a miscellany of topics. This will round off the basic intro to Python. After this lecture we'll be discussing very important packages for scientific computing: numpy, scipy, matplotlib, pandas
@@ -157,8 +160,8 @@ sigma_x = [ [0, 1],
 \end{itemize}
 \begin{python}
 dict = {
-    'name' = 'ulab',
-    'age' = 5
+    'name': 'ulab',
+    'age' : 5
 }
 \end{python}
 \begin{python}

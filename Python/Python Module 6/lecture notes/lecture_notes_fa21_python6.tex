@@ -95,35 +95,35 @@ showstringspaces=false
 	    \includegraphics[width=7cm] {fig}
     \end{figure}
     \item \verb|Figure|: container for a matplotlib graphic. A figure contains multiple \verb|Axes| objects.
-    \item \verb|Axes|: an individual plot. (Note: not be confused with Axis. Multiple AXIS form an AXES).
-    \item The \verb|Axes| contains most of the smaller objects that we care about. E.g. \verb|title, xlabel,| etc...
+    \item \verb|Axes|: an individual plot. (Note: not be confused with AXIS).
+    \item The \verb|Axes| contains the data to be plotted as well as the \verb|title, xlabel, legend| etc...
 \end{itemize}
 
-\section{Axes}
-\textbf{Reference: }\url{https://matplotlib.org/stable/api/axes_api.html#plotting}
+\section{A Basic Plot}
+\begin{python}
+fig, ax = plt.subplots(figsize=(8,6))
+
+x = np.linspace(0, 10, 20)
+y1 = 2*x+1
+y2 = 3*x+1
+
+ax.plot(x, y1, label='a line')
+ax.plot(x, y2, label='a steeper line')
+ax.set_title('A title!')
+ax.set_xlabel('x')
+ax.set_ylabel(r'$y = 2 \cdot x +1$')
+ax.legend()
+
+plt.show()
+\end{python}
 
 \begin{itemize}
-    \item \verb|subplots| method creates and returns a \verb|Figure| and \verb|Axes|(s). By default, \verb|subplots| populates the \verb|Figure| with one \verb|Axes|. We can optionally specify the figure size.
-    \item We use the \verb|plot| method to plot our data. We can optionally specify a label
-    \item \verb|set_title|, \verb|set_xlabel|, \verb|set_ylabel|
-    \item In order to display the \verb|Figure|, we use \verb|plt.show()|. This command finds and displays the current \verb|Figure|
-    \item Basic plot example:
-    \begin{python}
-    fig, ax = plt.subplots(figsize=(8,6))
-
-    x = np.linspace(0, 10, 20)
-    y1 = 2*x+1
-    y2 = 3*x+1
-
-    ax.plot(x, y1, label='a line')
-    ax.plot(x, y2, label='a steeper line')
-    ax.set_title('A title!')
-    ax.set_xlabel('x')
-    ax.set_ylabel(r'$y = 2 \cdot x +1$')
-    fig.legend()
-    
-    plt.show()
-    \end{python}
+    \item The \verb|pyplot.subplots| method creates and returns a \verb|Figure| and \verb|Axes|(s). \verb|pyplot| is a state-based interface: it retains a reference to the \verb|Figure| objected handed to you, so when you call \verb|pyplot|  later on, it knows which figures to make the changes.
+    \item We can optionally specify the figure size in \verb|pyplot.subplots|.
+    \item To populate the plot, we edit the \verb|Axes| object (\verb|ax|).
+    \item We use the \verb|Axes.plot| method to plot our data. We can optionally specify a label
+    \item \verb|Axes.set_title|, \verb|Axes.set_xlabel|, \verb|Axes.set_ylabel|, \verb|Axes.legend|
+    \item In order to display the \verb|Figure|, we use the \verb|pyplot.show| function. This displays all open figures. After the show command, the displayed figures are closed (\verb|pyplot|'s internal state no longer tracks the figure).
 \end{itemize}
 
 \textbf{ax.plot format: }
@@ -131,18 +131,18 @@ showstringspaces=false
     \item \verb|ax.plot(x, y, [format])|
     \begin{figure}[H]
 	    \centering
-	    \includegraphics[width=14cm] {format}
+	    \includegraphics[width=12cm] {format}
     \end{figure}
     \item \verb|plot| has other properties, e.g. linewidth, markersize, etc...(read the docs)
 \end{itemize}
 
 \textbf{Additional Axes Methods (Demo)}:
 \begin{itemize}
-    \item \verb|ax.grid()|
-    \item \verb|ax.set_xlim(min, max)|, \verb|ax.set_ylim(min, max)|
-    \item \verb|ax.xscale(value)|, \verb|ax.yscale(value)|, e.g. \verb|ax.xscale(`log')|
-    \item \verb|ax.axhline(y)|, \verb|ax.axvline(y)|
-    \item \verb|ax.errorbar(x, y, yerr=None, xerr=None, capsize=None)|
+    \item \verb|Axes.grid()|
+    \item \verb|Axes.set_xlim(min, max)|, \verb|Axes.set_ylim(min, max)|
+    \item \verb|Axes.xscale(value)|, \verb|Axes.yscale(value)|, e.g. \verb|Axes.xscale(`log')|
+    \item \verb|Axes.axhline(y)|, \verb|Axes.axvline(y)|
+    \item \verb|Axes.errorbar(x, y, yerr=None, xerr=None, capsize=None)|
 \end{itemize}
 
 \textbf{Other types of plots} (read the docs):
@@ -151,6 +151,24 @@ showstringspaces=false
     \item Pie 
     \item Box and wisker
     \item etc...
+\end{itemize}
+
+\textbf{Histogram}
+\begin{python}
+x = np.random.normal(size=10000)
+fig, ax = plt.subplots()
+ax.hist(x, bins=30)
+plt.show()
+\end{python}
+\begin{python}
+x = np.random.uniform(size=10000)
+fig, ax = plt.subplots()
+ax.hist(x, bins=[0,0.1,0.2,0.3,0.6,0.7,0.8,0.9,1])
+plt.show()
+\end{python}
+\begin{itemize}
+	\item 
+	\item
 \end{itemize}
 
 \section{Subplots}
@@ -287,18 +305,18 @@ plt.show()
 
 \section{Pandas}
 \begin{itemize}
-    \item Pandas is a package for reading and cleaning data. This is a topic that deserves a separate workshop. I will only show a limited functionality.
-    \item Reading in csv/txt file from computer/online (\verb|bb.txt| is included as a backup):
+    \item Pandas is a package for reading and cleaning data. This is a topic that could fill many lectures itself. I will only show a limited functionality.
+    \item Reading in csv/txt file from computer/online (\verb|bb.txt| is included as a backup). Some common optional arguments for \verb|pd.read_csv|: \verb|header=None|, \verb|encoding = `utf8'|.
     \begin{python}
     import pandas as pd
     # data frame
     df = pd.read_csv('https://www.ocf.berkeley.edu/~yizhu/bb.txt',
-                        delimiter=',')
+                        delimiter=',', skiprows=0)
     
     lam = df['Lambda (nm)']
     I = df['Specific Intensity (W/m^3*Sr)']
 
-    >>> data
+    >>> df
              Lambda (nm)  Specific Intensity (W/m^3*Sr)
     0     300.000000                   7.940206e+12
     1     303.517588                   8.338975e+12
@@ -328,7 +346,10 @@ plt.show()
     199    1000.000000
     Name: Lambda (nm), Length: 200, dtype: float64
     \end{python}
-    \item Some common optional arguments for \verb|pd.read_csv|: \verb|header=None|, \verb|encoding = `utf8'|
+	\item Data structures in \verb|pandas|: \verb|Series| and \verb|DataFrame|.
+	\item \verb|Series|: a 1-dimensional ndarray of data. Each element in the series has a label (index). Example: \verb|lam| is a \verb|Series| indexed by 0, 1, 2, $\dots$. Indices do not have to be unique.
+	\item \verb|DataFrame|: 2-dimension array storing tabular data. Tabular data is data arranged in a table form. Each row has the same columns as the other rows, in the same order. Each row is indexed by a label.
+	\item Indexing data frames is a surprisingly complex topic. We will refer you to some resources from Data 100.
 \end{itemize}
 
 \section{Conclusion}
