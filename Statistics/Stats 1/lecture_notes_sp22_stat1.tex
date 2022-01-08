@@ -43,6 +43,8 @@ Why do we care about statistic and probability in physics?
 	\item Physics is statistical: statistical mechanics (thermodynamics) and quantum mechanics (statistical ensembles).
 \end{itemize}
 
+\textbf{Goal}: a broad exposure to statistical terms and concepts that pop up in research and a quasi-``from first principles'' treatment of these concepts. 
+
 \section{Events, Sample Spaces, RVs}
 
 \begin{itemize}
@@ -138,14 +140,14 @@ In general,
 	\end{equation}
 	\item BINOMIAL distribution: the probability of $ k $ successes in $ n $ Bernoulli$ (p) $ trials.
 	\begin{equation}
-			\text{Binomial}(p) = {n \choose k} p^k q^{n-k}
+			\text{Binomial}(p) = {n \choose k} p^k q^{n-k};\quad\text{for }k=0, 1, \dots, n
 	\end{equation}
 	\textit{$ n $ choose $ k $}: the number of ways to choose $ k $ successful trials among $ n $  total trials.
 	\begin{equation}
 			{n\choose k} = \frac{n!}{k!(n-k)!}
 	\end{equation}
 	Mean: $ np $, Variance: $ npq $
-	\item The binomial theorem:
+	\item Intuitive picture: the binomial theorem.
 	\begin{equation}
 			(p+q)^n = \sum_{k=0}^\infty {n \choose k} p^k q^{n-k}
 	\end{equation}
@@ -164,6 +166,8 @@ In general,
 \end{center}
 
 \item NORMAL distribution. Q: how tall is the Campanille? If I were to give you a meter stick, ladder, and a well-written liability release form, you could measure for yourself! If you were to measure the height 20 times, we would expect a slightly different value each time. If we were to plot the measured values, we would expect a distribution that looks like a normal distribution.
+
+How can we derive the normal distribution. Idea: (1) errors are symmetric about the true value, so it is the mean, (2) the larger the error, i.e. farther from the mean, the less probable we are to measure. Can we express this as a differential equation for the probability density?
 
 \st{Data is normally distributed if the rate that the probability density falls is proportional to the distance from the mean.} (Almost)
 \begin{equation}
@@ -217,17 +221,16 @@ We break up the time $ t $ into $ n $ intervals. For $ n $ large enough (i.e. wh
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=9cm] {poi}
+	\includegraphics[width=6cm] {poi}
 \end{figure}
 
 Then, the probability of $ x $ arrivals is given by the binomial distribution, 
-\begin{align}
+{\footnotesize
+\begin{align*}
 		P(x \text{ arrivals}) &= \lim_{n\to\infty} {n \choose x} \left(\frac{\lambda t}{n}\right)^x \left(1-\frac{\lambda t}{n}\right)^{n-x}\\
-		&= \frac{n!}{x!(n-x)!}\frac{(\lambda t)^x}{n^x}\left(1-\frac{\lambda t}{n}\right)^{n} \cancelto{_1}{\left(1-\frac{\lambda t}{n}\right)^{-x}}\\
-		&= \frac{n!}{(n-x)!\ n^x}\frac{(\lambda t)^x}{x!} e^{-\lambda t} \\
-		&= \left[\frac{n(n-1)(n-2)\dots (n-x+1)}{n^x}\right]\frac{(\lambda t)^x}{x!}  e^{-\lambda t}\\
-		&= \cancelto{_1}{\left[ \frac{n}{n} \cdot \frac{n-1}{n} \cdot \frac{n-2}{n} \cdot \dots \cdot \frac{n-x+1}{n} \right]}\frac{(\lambda t)^x}{x!}  e^{-\lambda t}\\
-\end{align}
+		&= \frac{n!}{x!(n-x)!}\frac{(\lambda t)^x}{n^x}\left(1-\frac{\lambda t}{n}\right)^{n} \cancelto{_1}{\left(1-\frac{\lambda t}{n}\right)^{-x}}= \frac{n!}{(n-x)!\ n^x}\frac{(\lambda t)^x}{x!} e^{-\lambda t} \\
+		&= \left[\frac{n(n-1)(n-2)\dots (n-x+1)}{n^x}\right]\frac{(\lambda t)^x}{x!}  e^{-\lambda t}= \cancelto{_1}{\left[ \frac{n}{n} \cdot \frac{n-1}{n} \cdot \frac{n-2}{n} \cdot \dots \cdot \frac{n-x+1}{n} \right]}\frac{(\lambda t)^x}{x!}  e^{-\lambda t}\\
+\end{align*}}
 \begin{equation}
 		P(x \text{ arrivals}) = \frac{(\lambda t)^x  e^{-\lambda t}}{x!}
 \end{equation}
