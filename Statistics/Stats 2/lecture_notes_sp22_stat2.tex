@@ -230,13 +230,17 @@ where $ \mathbf{r}$ is the vector of residuals, $ r_i =  y_i - f(\vec{\lambda}_k
 		H_{l,m} &= \laplacian_{\lambda_l,\lambda_m} {\phi(\vec{\lambda}_k)} = \pdv{\lambda_l}\pdv{\lambda_m}\sum_i [y_i - f(\vec{\lambda}_k;x_i)]^2 \\
 		&=  \pdv{\lambda_l} \sum_i -2[y_i - f(\vec{\lambda}_k;x_i)]\pdv{f(\vec{\lambda}_k; x_i)}{\lambda_m} \\
 		&= -2\sum_i \left(-\pdv{f(\vec{\lambda}_k; x_i)}{\lambda_l}\pdv{f(\vec{\lambda}_k; x_i)}{\lambda_m} + r_i\pdv{f(\vec{\lambda}_k; x_i)}{\lambda_l}{\lambda_m} \right)\\
-		& \approx  2\sum_i \pdv{f(\vec{\lambda}_k; x_i)}{\lambda_l}\pdv{f(\vec{\lambda}_k; x_i)}{\lambda_m} = 2\mathbf{J}^T \mathbf{J}
+		& \approx  2\sum_i \pdv{f(\vec{\lambda}_k; x_i)}{\lambda_l}\pdv{f(\vec{\lambda}_k; x_i)}{\lambda_m} 
 \end{align*}
+Therefore,
+\begin{equation}
+		\laplacian{\phi(\vec{\lambda}_k)}= 2\mathbf{J}^T \mathbf{J}
+\end{equation}
 \item Putting everything together,
 \begin{equation}
 			\vec{\lambda}_{k+1} = 	\vec{\lambda}_{k} - (\mathbf{J}_k^T \mathbf{J}_k)^{-1}\mathbf{J}_k^T\mathbf{r}
 \end{equation}
-When implementing this algorithm, we can determine $ \mathbf{J}_k $ numerically (i.e. estimating the derivatives). 
+When implementing this algorithm, we can determine $ \mathbf{J}_k $ numerically (i.e. estimating the derivatives about $ \vec{\lambda}_k $). 
 
 NOTICE: this procedure is sensitive to the initial condition $ \vec{\lambda}_0 $. The successive approximation is not guaranteed to converge, and if it does, it is not guaranteed to be the absolute minimum. Rather, different initial conditions may lead to different local minimums.
 
@@ -317,7 +321,7 @@ The chi-squared distribution has probability density function (derivation \href{
 \end{equation}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=12cm] {pdf}
+	\includegraphics[width=11cm] {pdf}
 \end{figure}
 
 The distribution $ \chi^2_k $ has mean = $ k $ and variance = $ 2k $. The expectation value makes sense: $ E(\sum_i X_i) = \sum_i E(X_i) = k\cdot N(0,1)^2$ and the expectation value of the standard normal squared is 1.
@@ -325,7 +329,7 @@ The distribution $ \chi^2_k $ has mean = $ k $ and variance = $ 2k $. The expect
 \item UNCERTAINTY: the data that we collect has uncertainty, i.e. our data will have some amount of error. We assume that our measurments are normally distributed and that our uncertainty for a given point is the standard deviation. [NOTE: chi-squared analysis hold ONLY if errors are normally distributed]
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=12cm] {model}
+	\includegraphics[width=11cm] {model}
 \end{figure}
 Then, for each $ x_i $, we measure $ y_i $ with uncertainty $ \sigma_i $, and,
 \begin{equation}
