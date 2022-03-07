@@ -43,14 +43,14 @@ Why do we care about statistic and probability in physics?
 	\item Physics is statistical: statistical mechanics (thermodynamics) and quantum mechanics (statistical ensembles).
 \end{itemize}
 
-\textbf{Goal}: a broad exposure to statistical terms and concepts that pop up in research and a quasi-``from first principles'' treatment of these concepts. 
+\textbf{Goal}: a broad exposure to statistical terms and concepts that pop up in research and a ``from first principles'' treatment of these concepts. 
 
 \section{Events, Sample Spaces, RVs}
 
 \begin{itemize}
 	\item EVENT: a possible result of a measurement or experiment. Probability describes the statistics of an event happening.
 	\item SAMPLE SPACE: the set of all events. For example, for a coin toss, the event space $ E $ is given by $ E = \{H, T\} $.
-	\item RANDOM VARIABLE: a variable that represents the numerical result of a random process.  A RV takes on different values by chance. Each value the RV can take represents an event in the sample space. For example: if $ X $ is the result of a dice roll, then after rolling a 5, the RV has value $ X=5 $
+	\item RANDOM VARIABLE: a variable that represents the numerical result of a random process.  \textit{A RV takes on different values by chance.} Each value the RV can take represents an event in the sample space. For example: if $ X $ is a RV representing the result of a dice roll, then after rolling a 5, $ X $ has value $ X=5 $. $ X $ has a 1/6 of taking any value between 1--6. 
 	\item Function of random variables: suppose $ X,Y $ are random variables. We can define another random variable as a function of $ X,Y $,
 	\begin{equation}
 			Z = f(X,Y)
@@ -167,7 +167,7 @@ In general,
 
 \item NORMAL distribution. Q: how tall is the Campanille? If I were to give you a meter stick, ladder, and a well-written liability release form, you could measure for yourself! If you were to measure the height 20 times, we would expect a slightly different value each time. If we were to plot the measured values, we would expect a distribution that looks like a normal distribution.
 
-How can we derive the normal distribution. Idea: (1) errors are symmetric about the true value, so it is the mean, (2) the larger the error, i.e. farther from the mean, the less probable we are to measure. Can we express this as a differential equation for the probability density?
+How can we derive the normal distribution. Idea: (1) errors are symmetric about the true value, so the true value must be the mean, (2) the larger the error, i.e. farther from the mean, the less probable we are to measure that value. Can we express this as a differential equation for the probability density?
 
 \st{Data is normally distributed if the rate that the probability density falls is proportional to the distance from the mean.} (Almost)
 \begin{equation}
@@ -224,7 +224,7 @@ We break up the time $ t $ into $ n $ intervals. For $ n $ large enough (i.e. wh
 	\includegraphics[width=6cm] {poi}
 \end{figure}
 
-Then, the probability of $ x $ arrivals is given by the binomial distribution, 
+Then, the probability of $ x $ arrivals after waiting some time $ t $ is given by the binomial distribution ($ x $ successes in $ n $ Bernoulli($ \lambda t/n $) trials as $ n\to\infty $), 
 {\footnotesize
 \begin{align*}
 		P(x \text{ arrivals}) &= \lim_{n\to\infty} {n \choose x} \left(\frac{\lambda t}{n}\right)^x \left(1-\frac{\lambda t}{n}\right)^{n-x}\\
